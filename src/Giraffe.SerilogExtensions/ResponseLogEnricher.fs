@@ -6,6 +6,7 @@ open Microsoft.AspNetCore.Http
 open Serilog.Core
 open Serilog.Events
 
+/// Extracts and logs properties from the Response of the HttpContext after having executed the input HttpHandler.
 type ResponseLogEnricher(context: HttpContext, config: SerilogConfig, stopwatch: Stopwatch, requestId: string) = 
     interface ILogEventEnricher with 
         member this.Enrich(logEvent: LogEvent, _: ILogEventPropertyFactory) = 

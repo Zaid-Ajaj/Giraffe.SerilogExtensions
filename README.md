@@ -1,9 +1,8 @@
 # Giraffe.SerilogExtensions [![Build Status](https://travis-ci.org/Zaid-Ajaj/Giraffe.SerilogExtensions.svg?branch=master)](https://travis-ci.org/Zaid-Ajaj/Giraffe.SerilogExtensions) [![Nuget](https://img.shields.io/nuget/v/Giraffe.SerilogExtensions.svg?colorB=green)](https://www.nuget.org/packages/Giraffe.SerilogExtensions)
 
-[Giraffe](https://github.com/giraffe-fsharp/Giraffe) plugin to use the awesome [Serilog](https://github.com/serilog/serilog) library as the logger for your application
+Dead simple library to integrate [Serilog](https://github.com/serilog/serilog) within [Giraffe](https://github.com/giraffe-fsharp/Giraffe) apps: implemented as a composable HttpHandler and has native destructuring of F# types.
 
 ### Install
-Install from Nuget:
 ```bash
 # using nuget client
 dotnet add package Giraffe.SerilogExtensions
@@ -12,7 +11,7 @@ dotnet add package Giraffe.SerilogExtensions
 ```
 
 ### Usage
-Wrap an existing `HttpHandler` with `SerilogAdapter.Enable`:
+Wrap an existing `HttpHandler` with `SerilogAdapter.Enable` and you are done!
 ```fs
 open Giraffe
 open Giraffe.SerilogExtensions
@@ -24,11 +23,13 @@ let webApp = GET >=> route "/" >=> text "Home"
 // Enable logging on an exisiting HttpHandler 
 let webAppWithLogging = SerilogAdapter.Enable(webApp)
 
-// Configure serilog 
+// Configure Serilog: sinks and enrichers go here
 Log.Logger <- 
   LoggerConfiguration()
+    // add native destructuring
     .Destructure.FSharpTypes()
-    .WriteTo.Console() // from Serilog.Sinks.Console
+    // from Serilog.Sinks.Console
+    .WriteTo.Console() 
     .CreateLogger() 
 
 (* configure Giraffe to run here... *)
@@ -73,7 +74,7 @@ let webApp =
                      logger.Information("Read my {RequestId}")
                      text "Some response") ]
 ```
-the `Logger()` method is an extension method to `HttpContext`. 
+the `Logger()` method is an extension method to `HttpContext`. The `context` combinator is another handy extension from this library that allows access to the current `HttpContext` from which you create a new `HttpHandler`.
 
 ### Ignore log fields
 As you can see, there many fields being logged from the request and response. You can configure the logger to ignore some fields:

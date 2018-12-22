@@ -17,6 +17,7 @@ module Extensions =
             then Log.ForContext("RequestId", ctx.Items.["RequestId"])
             else Log.Logger
 
+    /// The context combinator allows access to data and services within the current HttpContext from which you can create a new HttpContext.
     let context (contextMap: HttpContext -> HttpHandler) : HttpHandler =  
       fun (next : (HttpContext -> Task<HttpContext option>)) (ctx : HttpContext)  -> 
           let nextHandler : HttpHandler = contextMap ctx
@@ -25,7 +26,7 @@ module Extensions =
 
 
 type SerilogAdapter() = 
-    /// Wraps a HttpHandler with logging enabled using the given given configuration
+    /// Wraps a HttpHandler with logging enabled using the given configuration.
     static member Enable(app: HttpHandler, config: SerilogConfig) : HttpHandler = 
         
         fun (next: HttpFunc) (context: HttpContext) ->
@@ -56,12 +57,7 @@ type SerilogAdapter() =
                     let nextFromError = errorHandlerResult next
                     return! nextFromError context 
             }
-            
 
-            
-            
 
-        
-
-    /// Wraps a HttpHandler with logging enables using the default configuration
+    /// Wraps a HttpHandler with logging enables using the default configuration.
     static member Enable(app: HttpHandler) = SerilogAdapter.Enable(app, SerilogConfig.defaults)

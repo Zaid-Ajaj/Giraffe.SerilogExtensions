@@ -7,7 +7,7 @@ open System.IO
 open System.Diagnostics
 open System 
 
-/// Extracts request information from the HttpContext and enriches the log event with the information
+/// Extracts and logs properties from the Request of the HttpContext after having executed the input HttpHandler.
 type RequestLogEnricher(context: HttpContext, config: SerilogConfig, requestId: string) = 
     interface ILogEventEnricher with 
         member this.Enrich(logEvent: LogEvent, _: ILogEventPropertyFactory) = 
