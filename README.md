@@ -1,6 +1,6 @@
 # Giraffe.SerilogExtensions [![Build Status](https://travis-ci.org/Zaid-Ajaj/Giraffe.SerilogExtensions.svg?branch=master)](https://travis-ci.org/Zaid-Ajaj/Giraffe.SerilogExtensions) [![Nuget](https://img.shields.io/nuget/v/Giraffe.SerilogExtensions.svg?colorB=green)](https://www.nuget.org/packages/Giraffe.SerilogExtensions)
 
-Dead simple library to integrate [Serilog](https://github.com/serilog/serilog) within [Giraffe](https://github.com/giraffe-fsharp/Giraffe) apps: implemented as a composable HttpHandler and has native destructuring of F# types.
+Dead simple library to integrate [Serilog](https://github.com/serilog/serilog) within [Giraffe](https://github.com/giraffe-fsharp/Giraffe) or [Saturn](https://github.com/SaturnFramework/Saturn) apps: implemented as a composable HttpHandler and has native destructuring of F# types.
 
 ### Install
 ```bash
@@ -62,7 +62,7 @@ Now there logs become as follows, since there are two sinks, one is normal conso
 ```
 Logs from the same roundtrip will include a `RequestId` property that is the same for these logs to trace them back using your favorite log server. 
 
-### Use the logger from inside the WebPart
+### Use the logger from inside the HttpHandler 
 You can get a reference for a logger with the `RequestId` attached to it from inside a `HttpHandler`:
 ```fs
 let webApp = 
