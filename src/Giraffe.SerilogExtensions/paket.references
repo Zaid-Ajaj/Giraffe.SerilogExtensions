@@ -1,0 +1,6 @@
+FSharp.Core
+SourceLink.Create.CommandLine
+Giraffe
+Microsoft.AspNetCore.Http
+Serilog
+Fable.Remoting.Json

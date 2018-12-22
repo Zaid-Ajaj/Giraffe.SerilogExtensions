@@ -1,0 +1,5 @@
+FSharp.Core
+Giraffe
+Serilog
+Serilog.Sinks.Console
+Microsoft.AspNetCore.Server.Kestrel
