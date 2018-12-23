@@ -23,10 +23,7 @@ type SerilogConfig =
           RequestMessageTemplate = "{Method} Request at {Path}"
           ResponseMessageTemplate = "{Method} Response (StatusCode {StatusCode}) at {Path} took {Duration} ms"
           ErrorMessageTemplate = "Error at {Path} took {Duration} ms"
-          ErrorHandler = 
-           fun ex httpContext -> 
-              text "Internal Server Error"
-              >=> setStatusCode 500  }
+          ErrorHandler = fun ex httpContext -> setStatusCode 500 >=> text "Internal Server Error" }
 
 module Ignore = 
     let fromRequest : FieldChoser<RequestLogData> = Choser [ ]

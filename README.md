@@ -1,6 +1,6 @@
 # Giraffe.SerilogExtensions [![Build Status](https://travis-ci.org/Zaid-Ajaj/Giraffe.SerilogExtensions.svg?branch=master)](https://travis-ci.org/Zaid-Ajaj/Giraffe.SerilogExtensions) [![Nuget](https://img.shields.io/nuget/v/Giraffe.SerilogExtensions.svg?colorB=green)](https://www.nuget.org/packages/Giraffe.SerilogExtensions)
 
-Dead simple library to integrate [Serilog](https://github.com/serilog/serilog) within [Giraffe](https://github.com/giraffe-fsharp/Giraffe) or [Saturn](https://github.com/SaturnFramework/Saturn) apps: implemented as a composable HttpHandler and has native destructuring of F# types.
+Dead simple library to integrate [Serilog](https://github.com/serilog/serilog) within [Giraffe](https://github.com/giraffe-fsharp/Giraffe) or [Saturn](https://github.com/SaturnFramework/Saturn) apps: implemented as a composable HttpHandler and has native destructuring of F# types. No need to involve the dependency injection mechanism to get the logger up and running.
 
 ### Install
 ```bash
@@ -105,8 +105,8 @@ let serilogConfig =
     ErrorHandler = 
       fun ex httpContext -> 
         // NancyFx-style apologetic message :D
-        text "Sorry, something went terribly wrong!"
-        >=> setStatusCode 500 }
+        setStatusCode 500 
+        >=> text "Sorry, something went terribly wrong!" }
 
 let webAppWithLogging = SerilogAdapter.Enable(webApp, serilogConfig)
 ```

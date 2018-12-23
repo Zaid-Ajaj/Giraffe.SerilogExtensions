@@ -38,8 +38,5 @@ type ErrorLogEnricher(context: HttpContext, stopwatch: Stopwatch, requestId: str
             Enrichers.eventProperty "StatusCode" 500
             |> logEvent.AddOrUpdateProperty
 
-            Enrichers.eventProperty "Reason" "Internal Server Error"
-            |> logEvent.AddOrUpdateProperty
-
-            Enrichers.eventProperty "Type" "ServerError"
+            Enrichers.eventProperty "Type" "UnhandledServerException"
             |> logEvent.AddOrUpdateProperty

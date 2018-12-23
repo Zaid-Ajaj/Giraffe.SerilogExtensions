@@ -50,7 +50,10 @@ let simpleApp : HttpHandler =
   choose [ GET >=> route "/" >=> text "Home" 
            GET >=> route "/other" >=> text "Other route" ]   
 
-let appWithLogger = SerilogAdapter.Enable(app)
+let config = 
+  { SerilogConfig.defaults with 
+      ErrorHandler = fun ex context -> setStatusCode 500 >=> text "Something went horribly, horribly wrong" }
+let appWithLogger = SerilogAdapter.Enable(app, config)
 
 Log.Logger <- 
   LoggerConfiguration()
