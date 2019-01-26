@@ -10,8 +10,8 @@ open Serilog.Events
 type ResponseLogEnricher(context: HttpContext, config: SerilogConfig, stopwatch: Stopwatch, requestId: string) = 
     interface ILogEventEnricher with 
         member this.Enrich(logEvent: LogEvent, _: ILogEventPropertyFactory) = 
-            let (Choser ignoredRequestFields) = config.IgnoredRequestFields
-            let included field = not (List.exists ((=) ("Response." + field)) ignoredRequestFields)
+            let (Choser ignoredResponseFields) = config.IgnoredResponseFields
+            let included field = not (List.exists ((=) ("Response." + field)) ignoredResponseFields)
             let anyOf xs = fun x -> List.exists ((=) x) xs 
             let ifEmptyThen y x =
                 if String.IsNullOrWhiteSpace(x) 
