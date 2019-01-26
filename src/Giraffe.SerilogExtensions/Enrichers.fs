@@ -15,5 +15,6 @@ module Enrichers =
               let value = ScalarValue(value)
               KeyValuePair<ScalarValue, LogEventPropertyValue>(key,value)) 
           |> fun pairs -> DictionaryValue(pairs) :> LogEventPropertyValue
+      | :? int64 as longInt -> ScalarValue(longInt) :> LogEventPropertyValue
       | otherwise -> failwithf "Could not convert '%A' into a log event property value" otherwise
       |> fun eventPropValue -> LogEventProperty(name,  eventPropValue)

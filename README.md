@@ -95,8 +95,8 @@ let webAppWithLogging = SerilogAdapter.Enable(webApp, serilogConfig)
 Error handling within the Serilog `HttpHandler` is also handled by Serilog and not Giraffes's internal logger. The error handler is of type: `Exception -> HttpContext -> HttpHandler` with the default handler returning a generic error message from the server:
 ```fs
 let errorHandler ex httpContext = 
-    text "Internal Server Error" >=> setStatusCode 500
-    
+    setStatusCode 500 
+    >=> text "Internal Server Error" 
 ```
 You can override this error handler from the config:
 ```fs
