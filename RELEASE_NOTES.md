@@ -1,3 +1,6 @@
+#### 1.2.0 - 2019-06-04
+* Re-use `RequestId` from context when logging in Saturn
+
 #### 1.1.2 - 2019-01-26
 * Use the correct ignored fields in the ResponseLogEnrichrer
 

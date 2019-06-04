@@ -4,20 +4,20 @@ open System.Reflection
 
 [<assembly: AssemblyTitleAttribute("Giraffe.SerilogExtensions.Tests")>]
 [<assembly: AssemblyProductAttribute("Giraffe.SerilogExtensions")>]
-[<assembly: AssemblyVersionAttribute("1.1.2")>]
-[<assembly: AssemblyMetadataAttribute("ReleaseDate","2019-01-26T00:00:00.0000000")>]
-[<assembly: AssemblyFileVersionAttribute("1.1.2")>]
-[<assembly: AssemblyInformationalVersionAttribute("1.1.2")>]
+[<assembly: AssemblyVersionAttribute("1.2.0")>]
+[<assembly: AssemblyMetadataAttribute("ReleaseDate","2019-06-04T00:00:00.0000000")>]
+[<assembly: AssemblyFileVersionAttribute("1.2.0")>]
+[<assembly: AssemblyInformationalVersionAttribute("1.2.0")>]
 [<assembly: AssemblyMetadataAttribute("ReleaseChannel","release")>]
-[<assembly: AssemblyMetadataAttribute("GitHash","8da93363afb4acfecc64767c13ce6b7479c2fb2b")>]
+[<assembly: AssemblyMetadataAttribute("GitHash","560d7b92d41101d0eece113297b88424514c7579")>]
 do ()
 
 module internal AssemblyVersionInformation =
     let [<Literal>] AssemblyTitle = "Giraffe.SerilogExtensions.Tests"
     let [<Literal>] AssemblyProduct = "Giraffe.SerilogExtensions"
-    let [<Literal>] AssemblyVersion = "1.1.2"
-    let [<Literal>] AssemblyMetadata_ReleaseDate = "2019-01-26T00:00:00.0000000"
-    let [<Literal>] AssemblyFileVersion = "1.1.2"
-    let [<Literal>] AssemblyInformationalVersion = "1.1.2"
+    let [<Literal>] AssemblyVersion = "1.2.0"
+    let [<Literal>] AssemblyMetadata_ReleaseDate = "2019-06-04T00:00:00.0000000"
+    let [<Literal>] AssemblyFileVersion = "1.2.0"
+    let [<Literal>] AssemblyInformationalVersion = "1.2.0"
     let [<Literal>] AssemblyMetadata_ReleaseChannel = "release"
-    let [<Literal>] AssemblyMetadata_GitHash = "8da93363afb4acfecc64767c13ce6b7479c2fb2b"
+    let [<Literal>] AssemblyMetadata_GitHash = "560d7b92d41101d0eece113297b88424514c7579"
