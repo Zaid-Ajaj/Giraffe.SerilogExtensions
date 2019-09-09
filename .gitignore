@@ -255,3 +255,4 @@ TestResults.xml
 
 dist/
 .DS_Store
+.ionide/
