@@ -1,3 +1,6 @@
+#### 1.3.0 - 2019-09-09
+* Fix the order of the logged `FullPath` and fill it with just the `Path` when query string parameters are not provided
+
 #### 1.2.0 - 2019-06-04
 * Re-use `RequestId` from context when logging in Saturn
 
