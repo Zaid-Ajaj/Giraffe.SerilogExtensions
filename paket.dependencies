@@ -9,7 +9,7 @@ nuget Serilog
 nuget Serilog.Sinks.Console
 nuget Serilog.Sinks.TestCorrelator
 nuget SourceLink.Create.CommandLine 2.8.0 copy_local: true
-nuget Giraffe
+nuget Giraffe ~> 5
 nuget Microsoft.AspNetCore.Server.Kestrel
 nuget Microsoft.AspNetCore.Hosting
 nuget Microsoft.AspNetCore.TestHost
