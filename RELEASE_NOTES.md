@@ -1,3 +1,6 @@
+#### 2.0.0 - 2021-06-29
+* Update to Giraffe v5
+
 #### 1.3.0 - 2019-09-09
 * Fix the order of the logged `FullPath` and fill it with just the `Path` when query string parameters are not provided
 

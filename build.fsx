@@ -76,19 +76,20 @@ type TargetFramework =
 | Full of string
 | Core of string
 
-let (|StartsWith|_|) prefix (s: string) =
+let (|StartsWith|_|) (prefix: string) (s: string) =
     if s.StartsWith prefix then Some () else None
 
 let getTargetFramework tf =
     match tf with
     | StartsWith "net4" -> Full tf
     | StartsWith "netcoreapp" -> Core tf
+    | StartsWith "net5.0" -> Core tf
     | _ -> failwithf "Unknown TargetFramework %s" tf
 
 let getTargetFrameworksFromProjectFile (projFile : string)=
     let doc = Xml.XmlDocument()
     doc.Load(projFile)
-    doc.GetElementsByTagName("TargetFrameworks").[0].InnerText.Split(';')
+    doc.GetElementsByTagName("TargetFramework").[0].InnerText.Split(';')
     |> Seq.map getTargetFramework
     |> Seq.toList
 
@@ -157,39 +158,7 @@ Target "WatchTests" (fun _ ->
 )
 
 Target "AssemblyInfo" (fun _ ->
-    let releaseChannel =
-        match release.SemVer.PreRelease with
-        | Some pr -> pr.Name
-        | _ -> "release"
-    let getAssemblyInfoAttributes projectName =
-        [ Attribute.Title (projectName)
-          Attribute.Product productName
-          Attribute.Version release.AssemblyVersion
-          Attribute.Metadata("ReleaseDate", release.Date.Value.ToString("o"))
-          Attribute.FileVersion release.AssemblyVersion
-          Attribute.InformationalVersion release.AssemblyVersion
-          Attribute.Metadata("ReleaseChannel", releaseChannel)
-          Attribute.Metadata("GitHash", Information.getCurrentSHA1(null))
-        ]
-
-    let getProjectDetails projectPath =
-        let projectName = System.IO.Path.GetFileNameWithoutExtension(projectPath)
-        ( projectPath,
-          projectName,
-          System.IO.Path.GetDirectoryName(projectPath),
-          (getAssemblyInfoAttributes projectName)
-        )
-
-    !! srcGlob
-    ++ testsGlob
-    |> Seq.map getProjectDetails
-    |> Seq.iter (fun (projFileName, projectName, folderName, attributes) ->
-        match projFileName with
-        | Fsproj -> CreateFSharpAssemblyInfo (folderName @@ "AssemblyInfo.fs") attributes
-        | Csproj -> CreateCSharpAssemblyInfo ((folderName @@ "Properties") @@ "AssemblyInfo.cs") attributes
-        | Vbproj -> CreateVisualBasicAssemblyInfo ((folderName @@ "My Project") @@ "AssemblyInfo.vb") attributes
-        | _ -> ()
-        )
+    ()
 )
 
 Target "DotnetPack" (fun _ ->

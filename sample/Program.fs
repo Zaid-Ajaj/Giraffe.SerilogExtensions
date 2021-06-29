@@ -12,50 +12,53 @@ open System.Threading.Tasks
 open Microsoft.Extensions.Logging
 open Microsoft.Extensions.DependencyInjection
 
-type Maybe<'a> = 
-  | Nothing
-  | Just of 'a
+type Maybe<'a> =
+    | Nothing
+    | Just of 'a
 
 type Rec = { First: string; Job: Maybe<string> }
 
-let app : HttpHandler = 
-  choose [ GET >=> route "/index" >=> text "Index"
-           POST >=> route "/echo" >=> text "Echo" 
-           GET >=> route "/destructure" 
-               >=> context (fun ctx ->
-                    let logger = ctx.Logger()
-                    let genericUnion =  Maybe.Just { First = "Zaid"; Job = Nothing }
-                    logger.Information("Generic Union with Record {@Union}", genericUnion)
+let app : HttpHandler = choose [
+    GET >=> route "/index" >=> text "Index"
+    POST >=> route "/echo" >=> text "Echo"
+    GET >=> route "/destructure"
+        >=> context (fun ctx ->
+            let logger = ctx.Logger()
+            let genericUnion =  Maybe.Just { First = "Zaid"; Job = Nothing }
+            logger.Information("Generic Union with Record {@Union}", genericUnion)
 
-                    let result = Ok (Just "for now!")
-                    logger.Information("Result {@Value}", result)
+            let result = Ok (Just "for now!")
+            logger.Information("Result {@Value}", result)
 
-                    let simpleList = [1;2;3;4;5]
-                    logger.Information("Simple list {@List}", simpleList)
+            let simpleList = [1;2;3;4;5]
+            logger.Information("Simple list {@List}", simpleList)
 
-                    let complexList = [ box (Just "this?"); box ({ First = "Zaid"; Job = Nothing }) ]
-                    logger.Information("Complex list {@List}", complexList) 
-                    
-                    text "Done")
+            let complexList = [ box (Just "this?"); box ({ First = "Zaid"; Job = Nothing }) ]
+            logger.Information("Complex list {@List}", complexList)
 
-           GET >=> route "/internal" 
-               >=> context (fun ctx ->
-                     let logger = ctx.Logger()
-                     logger.Information("Using internal logger")
-                     text "Internal") 
+            text "Done"
+        )
 
-           GET >=> route "/fail" >=> context (fun ctx -> failwith "Fail miserably") ]
- 
-let simpleApp : HttpHandler = 
-  choose [ GET >=> route "/" >=> text "Home" 
-           GET >=> route "/other" >=> text "Other route" ]   
+    GET >=> route "/internal"
+        >=> context (fun ctx ->
+                let logger = ctx.Logger()
+                logger.Information("Using internal logger")
+                text "Internal"
+            )
 
-let config = 
-  { SerilogConfig.defaults with 
+    GET >=> route "/fail" >=> context (fun ctx -> failwith "Fail miserably")
+]
+
+let simpleApp : HttpHandler =
+  choose [ GET >=> route "/" >=> text "Home"
+           GET >=> route "/other" >=> text "Other route" ]
+
+let config =
+  { SerilogConfig.defaults with
       ErrorHandler = fun ex context -> setStatusCode 500 >=> text "Something went horribly, horribly wrong" }
 let appWithLogger = SerilogAdapter.Enable(app, config)
 
-Log.Logger <- 
+Log.Logger <-
   LoggerConfiguration()
     .Destructure.FSharpTypes()
     .WriteTo.Console()
@@ -68,7 +71,7 @@ type Startup() =
         services.AddGiraffe() |> ignore
 
     member __.Configure (app : IApplicationBuilder)
-                        (env : IHostingEnvironment)
+                        (env : IWebHostEnvironment)
                         (loggerFactory : ILoggerFactory) =
         // Add Giraffe to the ASP.NET Core pipeline
         app.UseGiraffe appWithLogger
