@@ -1,6 +1,6 @@
 ﻿open System
 open Giraffe
-open FSharp.Control.Tasks.V2
+open FSharp.Control.Tasks
 open Giraffe.SerilogExtensions
 open Microsoft.AspNetCore.Http
 open Microsoft.AspNetCore.Hosting
