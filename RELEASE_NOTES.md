@@ -1,3 +1,6 @@
+#### 2.1.0 - 2021-08-05
+* Update to Giraffe v6
+
 #### 2.0.0 - 2021-06-29
 * Update to Giraffe v5
 

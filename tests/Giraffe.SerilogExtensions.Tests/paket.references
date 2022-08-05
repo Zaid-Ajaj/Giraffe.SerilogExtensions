@@ -1,6 +1,5 @@
 Expecto
 FSharp.Core
-dotnet-mono
 Serilog.Sinks.TestCorrelator
 Serilog.Sinks.Console
 Microsoft.AspNetCore.Http

@@ -9,12 +9,14 @@
     <Description>Giraffe plugin to use Serilog as the logger for your application</Description>
     <!-- summary is not migrated from project.json, but you can use the <Description> property for that if needed. -->
     <PackageTags>f#, fsharp, serilog, giraffe, logging, tracing</PackageTags>
-    <PackageProjectUrl>https://github.com/zaid-ajaj/Suave.SerilogExtensions</PackageProjectUrl>
-    <PackageLicenseUrl>https://github.com/zaid-ajaj/Suave.SerilogExtensions/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/zaid-ajaj/Giraffe.SerilogExtensions</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/zaid-ajaj/Giraffe.SerilogExtensions/blob/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
+    <Version>2.1.0</Version>
+     <PackageReleaseNotes>Update Giraffe to v6</PackageReleaseNotes>
     <Authors>Zaid Ajaj</Authors>
-    <RepositoryUrl>https://github.com/zaid-ajaj/Giraffe.Serilog</RepositoryUrl>
+    <RepositoryUrl>https://github.com/zaid-ajaj/Giraffe.SerilogExtensions</RepositoryUrl>
     <!-- owners is not supported in MSBuild -->
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)'=='Release'">

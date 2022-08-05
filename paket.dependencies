@@ -1,9 +1,8 @@
 source https://api.nuget.org/v3/index.json
 storage: none
-clitool dotnet-mono 0.5.4
-clitool dotnet-sourcelink 2.8.0
+lowest_matching: true
 nuget Argu
-nuget FSharp.Core
+nuget FSharp.Core >= 6.0.0
 nuget Expecto 
 nuget Serilog
 nuget Serilog.Sinks.Console

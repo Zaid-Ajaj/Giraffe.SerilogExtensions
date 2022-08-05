@@ -4,10 +4,7 @@ Dead simple library to integrate [Serilog](https://github.com/serilog/serilog) w
 
 ### Install
 ```bash
-# using nuget client
 dotnet add package Giraffe.SerilogExtensions
-# using Paket
-.paket/paket.exe add Giraffe.SerilogExtensions --project path/to/Your.fsproj
 ```
 
 ### Usage
@@ -118,21 +115,18 @@ let webAppWithLogging = SerilogAdapter.Enable(webApp, serilogConfig)
 
 ### Building
 
-
 Make sure the following **requirements** are installed in your system:
 
-* [dotnet SDK](https://www.microsoft.com/net/download/core) 2.0 or higher
-* [Mono](http://www.mono-project.com/) if you're on Linux or macOS.
+* [dotnet SDK](https://dotnet.microsoft.com/en-us/download) 6.0 or higher
 
 ```
-> build.cmd // on windows
-$ ./build.sh  // on unix
+cd ./build
+dotnet run
 ```
 
-### Watch Tests
-
-The `WatchTests` target will use [dotnet-watch](https://github.com/aspnet/Docs/blob/master/aspnetcore/tutorials/dotnet-watch.md) to watch for changes in your lib or tests and re-run your tests on all `TargetFrameworks`
+### Run Tests
 
 ```
-./build.sh WatchTests
+cd ./build
+dotnet run -- test
 ```
