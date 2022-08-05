@@ -5,7 +5,6 @@ open System.Diagnostics
 open Giraffe
 open Serilog
 open Microsoft.AspNetCore.Http
-open FSharp.Control.Tasks
 open System.Threading.Tasks
 
 [<AutoOpen>]
