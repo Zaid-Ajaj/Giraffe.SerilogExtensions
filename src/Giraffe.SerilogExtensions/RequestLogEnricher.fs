@@ -97,6 +97,7 @@ type RequestLogEnricher(context: HttpContext, config: SerilogConfig, requestId: 
                 ]
 
                 headerValues
+                |> List.filter (fun (key,_) -> not (List.exists ((=) key) config.IgnoredRequestHeaders))
                 |> Map.ofList
                 |> Enrichers.eventProperty "RequestHeaders"
                 |> logEvent.AddOrUpdateProperty

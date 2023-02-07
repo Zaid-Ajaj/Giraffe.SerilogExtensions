@@ -2,6 +2,8 @@ namespace Giraffe.SerilogExtensions
 
 open Giraffe
 open Microsoft.AspNetCore.Http
+open Microsoft.Net.Http.Headers
+
 type FieldChoser<'t> = Choser of string list
 
 type RequestLogData = RequestLogData
@@ -11,6 +13,7 @@ type ResponseLogData = ResponseLogData
 type SerilogConfig = 
     { IgnoredRequestFields : FieldChoser<RequestLogData>
       IgnoredResponseFields : FieldChoser<ResponseLogData>
+      IgnoredRequestHeaders: string list
       RequestMessageTemplate : string
       ResponseMessageTemplate : string
       ErrorMessageTemplate : string
@@ -20,6 +23,7 @@ type SerilogConfig =
     static member defaults = 
         { IgnoredRequestFields = Choser [ ] 
           IgnoredResponseFields = Choser [ ]
+          IgnoredRequestHeaders = [ HeaderNames.Authorization; HeaderNames.Cookie ]
           RequestMessageTemplate = "{Method} Request at {Path}"
           ResponseMessageTemplate = "{Method} Response (StatusCode {StatusCode}) at {Path} took {Duration} ms"
           ErrorMessageTemplate = "Error at {Path} took {Duration} ms"
