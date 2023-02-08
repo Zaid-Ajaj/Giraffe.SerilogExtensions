@@ -57,7 +57,7 @@ let publish projectPath =
         | Some nugetKey -> nugetKey
         | None -> failwith "The Nuget API key must be set in a NUGET_KEY environmental variable"
     let nupkg = System.IO.Directory.GetFiles(projectPath </> "bin" </> "Release") |> Seq.head
-    let pushCmd = $"nuget push %s{nupkg} -s nuget.org -k %s{nugetKey}"
+    let pushCmd = $"nuget push %s{nupkg} -s https://api.nuget.org/v3/index.json -k %s{nugetKey}"
     run projectPath dotnet pushCmd
 
 let build() = 

@@ -1,3 +1,6 @@
+#### 2.2.0 - 2023-02-08
+* Add ability to ignore request headers with Authorization and Cookie ignored by default
+
 #### 2.1.0 - 2021-08-05
 * Update to Giraffe v6
 

@@ -13,8 +13,8 @@
     <PackageLicenseUrl>https://github.com/zaid-ajaj/Giraffe.SerilogExtensions/blob/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <RepositoryType>git</RepositoryType>
-    <Version>2.1.0</Version>
-     <PackageReleaseNotes>Update Giraffe to v6</PackageReleaseNotes>
+    <Version>2.2.0</Version>
+     <PackageReleaseNotes>Add ability to ignore request headers with Authorization and Cookie ignored by default</PackageReleaseNotes>
     <Authors>Zaid Ajaj</Authors>
     <RepositoryUrl>https://github.com/zaid-ajaj/Giraffe.SerilogExtensions</RepositoryUrl>
     <!-- owners is not supported in MSBuild -->
